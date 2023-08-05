@@ -1,4 +1,5 @@
 from tabulate import tabulate
+from copy import deepcopy
 
 # white pieces
 PW = " ♙ " # represents white pawn 
@@ -83,4 +84,39 @@ class Chess:
         for i in range(8):
             row.append(None)
         return row
+
+    @classmethod
+    def result(cls, chessboard, action):
+        """
+        returns resulting board 
+
+        action variable should contain contain tuple - (player, piece, source, target, casteling, side)
+        """
+        # validating input type
+        if not isinstance(board, ChessBoard) and not isinstance(action, tuple):
+            raise TypeError
+        if len(tuple) != 4 and len(tuple) != 6:
+            raise ValueError
+        
+        # r
+        player = action[0]
+        piece = action[1]
+        source = action[2]
+        target = action[3]
+        board = deepcopy(chessboard.board)
+        if len(action) == 5:
+            if player == BLACK and chessboard.black_castled:
+                ...
+                # TODO return board with castling
+            elif player == WHITE and chessboard.white_castled:
+                ...
+                # TODO return board with castling
+
+        # 
+
+            
+
     
+"""
+first I define my result function then go backwards
+"""
