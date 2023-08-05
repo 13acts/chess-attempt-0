@@ -42,12 +42,12 @@ class Chess:
         if player == BLACK:
             for row_num, row in enumerate(board):
                 for cell_num, cell in enumerate(row):
-                    if cell in self.black_pieces:
+                    if cell in cls.black_pieces:
                         active_pieces_lst.append((cell, row_num, cell_num))
         elif player == WHITE:
             for row_num, row in enumerate(board):
                 for cell_num, cell in enumerate(row):
-                    if cell in self.white_pieces:
+                    if cell in cls.white_pieces:
                         active_pieces_lst.append((cell, row_num, cell_num))
         else:
             raise ValueError("only black or white pieces")
