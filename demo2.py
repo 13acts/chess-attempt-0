@@ -88,13 +88,37 @@ class Chess:
         for i in range(8):
             row.append(E)
         return row
-
+    
+    # get pieces that are on chess board along with their location of the particular player
     @classmethod
-    def result(cls, chessboard, action):
+    def get_active_pieces(cls, player, chessboard):
+        """
+        takes player and returns all the active pieces for that player in 
+        '(piece-name, row, column)' format
+        """
+        active_pieces_lst = []
+        board = chessboard.board
+        if player == BLACK:
+            for row_num, row in enumerate(board):
+                for cell_num, cell in enumerate(row):
+                    if cell in cls.black_pieces:
+                        active_pieces_lst.append((cell, row_num, cell_num))
+        elif player == WHITE:
+            for row_num, row in enumerate(board):
+                for cell_num, cell in enumerate(row):
+                    if cell in cls.white_pieces:
+                        active_pieces_lst.append((cell, row_num, cell_num))
+        else:
+            raise ValueError("only black or white pieces")
+        
+        return active_pieces_lst
+    
+    @classmethod
+    def result(cls, chessboard, action, move_num):
         """
         returns resulting board 
 
-        action variable should contain contain tuple - (player, piece, source, target, casteling, side)
+        action variable should contain contain tuple - (player, piece, source, target, castling, side)
         source and target will be tuples themselves 
 
         will assume that actions are correct
@@ -111,6 +135,8 @@ class Chess:
         source = action[2]
         target = action[3]
         board = deepcopy(chessboard.board)
+
+        # if castling
         if len(action) == 5:
             if player == BLACK and chessboard.black_castled:
                 ...
@@ -118,7 +144,10 @@ class Chess:
             elif player == WHITE and chessboard.white_castled:
                 ...
                 # TODO return board with castling
+        board[source[0]][source[1]] =  E
+        board[target[0]][target[1]] = piece
 
+        return ChessBoard(board=board, move_num=move_num)
         # 
 
             
