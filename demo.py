@@ -143,5 +143,5 @@ I need a way to see the all the active pieces on board
     the information I need - name, position (name, position)
 
 I need action validator function
-/mnt/f/cs50-AI/testing/tic
+
 """
