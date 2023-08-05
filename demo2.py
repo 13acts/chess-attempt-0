@@ -34,6 +34,10 @@ class ChessBoard():
             return WHITE
         else:
             return BLACK
+        
+    def print_board(self):
+        table = tabulate(self.board, tablefmt="grid")
+        print(table)
 
 class Chess:
     white_pieces = (RW, NW, BW, QW, KW, BW, NW, RW, PW)
@@ -82,7 +86,7 @@ class Chess:
     def create_empty_row(cls):
         row = []
         for i in range(8):
-            row.append(None)
+            row.append(E)
         return row
 
     @classmethod
@@ -91,6 +95,9 @@ class Chess:
         returns resulting board 
 
         action variable should contain contain tuple - (player, piece, source, target, casteling, side)
+        source and target will be tuples themselves 
+
+        will assume that actions are correct
         """
         # validating input type
         if not isinstance(board, ChessBoard) and not isinstance(action, tuple):
