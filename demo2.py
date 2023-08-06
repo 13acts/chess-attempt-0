@@ -144,6 +144,16 @@ class Chess:
             elif player == WHITE and chessboard.white_castled:
                 ...
                 # TODO return board with castling
+
+        # pawn promotes to queen at last square
+        if board[source[0]][source[1]] == PW and source[0] == 1:
+            board[source[0]][source[1]] =  E
+            board[target[0]][target[1]] = QW
+
+        elif board[source[0]][source[1]] == PB and source[0] == 6:
+            board[source[0]][source[1]] =  E
+            board[target[0]][target[1]] = QB
+
         board[source[0]][source[1]] =  E
         board[target[0]][target[1]] = piece
 
