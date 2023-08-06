@@ -153,9 +153,9 @@ class Chess:
         elif board[source[0]][source[1]] == PB and source[0] == 6:
             board[source[0]][source[1]] =  E
             board[target[0]][target[1]] = QB
-
-        board[source[0]][source[1]] =  E
-        board[target[0]][target[1]] = piece
+        else:
+            board[source[0]][source[1]] =  E
+            board[target[0]][target[1]] = piece
 
         return ChessBoard(board=board, move_num=move_num)
         # 
