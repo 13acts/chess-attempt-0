@@ -1,37 +1,40 @@
 from tabulate import tabulate
 
 # white pieces
-PW = " ♙ " # represents white pawn 
-KW = " ♔ " # represents white king
-QW = " ♕ " # represents white queen 
-RW = " ♖ " # represents white rook 
-BW = " ♗ " # represents white bishop 
-NW = " ♘ " # represents white knight
+PW = " ♙ "  # represents white pawn
+KW = " ♔ "  # represents white king
+QW = " ♕ "  # represents white queen
+RW = " ♖ "  # represents white rook
+BW = " ♗ "  # represents white bishop
+NW = " ♘ "  # represents white knight
 
 # black pieces
-PB = " ♟︎ " # represents black pawn
-KB = " ♚ " # represents black king
-QB = " ♛ " # represents black queen 
-RB = " ♜ " # represents black rook 
-BB = " ♝ " # represents black bishop 
-NB = " ♞ " # represents black knight
-BLACK = "BLACK" 
+PB = " ♟︎ "  # represents black pawn
+KB = " ♚ "  # represents black king
+QB = " ♛ "  # represents black queen
+RB = " ♜ "  # represents black rook
+BB = " ♝ "  # represents black bishop
+NB = " ♞ "  # represents black knight
+BLACK = "BLACK"
 WHITE = "WHITE"
-E = None # represents empty 
+E = None  # represents empty
+
+
 class Chess:
     white_pieces = (RW, NW, BW, QW, KW, BW, NW, RW, PW)
     black_pieces = (RB, NB, BB, QB, KB, BB, NB, RB, PB)
+
     def __init__(self) -> None:
         self.board = self.get_initial_board()
         self.move_count = 0
-    
+
     # actions
     def player(self):
         if self.move_count % 2 == 0:
             return WHITE
         else:
             return BLACK
-        
+
     @classmethod
     def get_active_pieces(cls, player, board):
         """
@@ -51,9 +54,9 @@ class Chess:
                         active_pieces_lst.append((cell, row_num, cell_num))
         else:
             raise ValueError("only black or white pieces")
-        
+
         return active_pieces_lst
-    
+
     def get_actions(self, active_pieces_lst, board):
         action_list = []
         for piece in active_pieces_lst:
@@ -62,18 +65,18 @@ class Chess:
             elif piece[0] == KW or piece[0] == KB:
                 action_list.append(self.king_actions(piece=piece, board=board))
             elif piece[0] == QW or piece[0] == QB:
-                action_list.append(self.queen_actions(piece=piece, board=board))
+                action_list.append(self.queen_actions(
+                    piece=piece, board=board))
             elif piece[0] == RW or piece[0] == RB:
                 action_list.append(self.rook_actions(piece=piece, board=board))
             elif piece[0] == BW or piece[0] == BB:
-                action_list.append(self.bishop_actions(piece=piece, board=board))
+                action_list.append(self.bishop_actions(
+                    piece=piece, board=board))
             elif piece[0] == NW or piece[0] == NB:
                 action_list.append(self.knight_actions(piece, board))
 
         return action_list
 
-
-    # setting up the chess board
     @classmethod
     def create_back_rank(cls, player):
         if player == WHITE:
@@ -106,25 +109,26 @@ class Chess:
         else:
             raise ValueError
         return row
-    
+
     @classmethod
     def create_empty_row(cls):
         row = []
         for i in range(8):
             row.append(None)
         return row
-    
+
     def print_board(self):
         table = tabulate(self.board, tablefmt="grid")
         print(table)
 
-action_dict = {
-    "player" : WHITE,
-    "piece" : PW,
-    "source" : (1, 1),
-    "target" : (2, 1)
-    # or -> (player, piece, source, target)
-}
+# action_dict = {
+#     "player" : WHITE,
+#     "piece" : PW,
+#     "source" : (1, 1),
+#     "target" : (2, 1)
+#     # or -> (player, piece, source, target)
+# }
+
 
 # piece
 chess = Chess()
@@ -144,4 +148,13 @@ I need a way to see the all the active pieces on board
 
 I need action validator function
 
+board 
+(0,0)(0,1)(0,2)(0,3)(0,4)(0,5)(0,6)(0,7)
+(1,0)(1,1)(1,2)(1,3)(1,4)(1,5)(1,6)(1,7)
+(2,0)(2,1)(2,2)(2,3)(2,4)(2,5)(2,6)(2,7)
+(3,0)(3,1)(3,2)(3,3)(3,4)(3,5)(3,6)(3,7)
+(4,0)(4,1)(4,2)(4,3)(4,4)(4,5)(4,6)(4,7)
+(5,0)(5,1)(5,2)(5,3)(5,4)(5,5)(5,6)(5,7)
+(6,0)(6,1)(6,2)(6,3)(6,4)(6,5)(6,6)(6,7)
+(7,0)(7,1)(7,2)(7,3)(7,4)(7,5)(7,6)(7,7)
 """

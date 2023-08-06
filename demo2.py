@@ -88,7 +88,25 @@ class Chess:
         for i in range(8):
             row.append(E)
         return row
-    
+     # setting up the chess board
+
+    @classmethod
+    def possible_king_moves(board, source, player):
+        ...
+
+    @classmethod
+    def possible_black_pawn_moves(board, source):
+        ...
+
+    @classmethod
+    def possible_white_pawn_moves(board, source):
+        ...
+
+    @classmethod
+    def validate_chess_moves(board, source, player):
+        """will validate moves if that puts king into check"""
+        ...
+
     # get pieces that are on chess board along with their location of the particular player
     @classmethod
     def get_active_pieces(cls, player, chessboard):
@@ -118,7 +136,7 @@ class Chess:
         """
         returns resulting board 
 
-        action variable should contain contain tuple - (player, piece, source, target, castling, side)
+        action variable should contain contain tuple - (player, piece, source, target) or (player, piece, source, target, castling, side)
         source and target will be tuples themselves 
 
         will assume that actions are correct
@@ -160,7 +178,25 @@ class Chess:
         return ChessBoard(board=board, move_num=move_num)
         # 
 
-            
+class ChessPathFinder:
+    @classmethod
+    def horizontal_path(cls, board, position, piece):
+        ...
+        # TODO
+    
+    @classmethod
+    def vertical_path(cls, board, position, piece):
+        ...
+        # TODO
+    
+    @classmethod
+    def diagonal_path(cls, board, position, piece):
+        temp_position = position
+        # go find 
+        ...
+        # TODO
+
+    
 
     
 """
