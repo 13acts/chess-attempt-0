@@ -1,4 +1,2 @@
 # chess-attempt-0
-my attempt at making AI chess 
-
-(demo2 contains current update while demo is older )
+Try a different approach by using Class for each piece type
